@@ -13,6 +13,8 @@ import { useEffect, useRef } from "react";
 import { Color } from "three";
 import { degToRad, lerp } from "three/src/math/MathUtils";
 import { Camping } from "./Camping";
+// import { Sona } from "./Sona";
+import { Speaker } from "./Speaker";
 import { currentPageAtom } from "./UI";
 
 const bloomColor = new Color("#fff");
@@ -70,16 +72,35 @@ export const Experience = () => {
         <meshBasicMaterial color="orange" transparent opacity={0.5} />
       </mesh>
       <Text
-        font={"fonts/Poppins-Black.ttf"}
-        position-x={-1.3}
+        font={"fonts/DelaGothicOne-Regular.ttf"}
+        position-x={1.5}
+        position-y={1}
+        position-z={2}
+        lineHeight={0.8}
+        textAlign="center"
+        rotation-y={degToRad(-30)}
+        anchorY={"bottom"}
+        scale={0.3}
+      > Jan 20th, 2024{"\n"}@ Revolver
+      <meshBasicMaterial
+          color={bloomColor}
+          toneMapped={false}
+          ref={textMaterial}
+        ></meshBasicMaterial>
+      </Text>
+      <Text
+        font={"fonts/DelaGothicOne-Regular.ttf"}
+        position-x={-2.0}
         position-y={-0.5}
         position-z={1}
         lineHeight={0.8}
-        textAlign="center"
+        textAlign="left"
         rotation-y={degToRad(30)}
         anchorY={"bottom"}
+        scale={1.5}
       >
-        MY LITTLE{"\n"}CAMPING
+       
+        K怕{"\n"}DA寒
         <meshBasicMaterial
           color={bloomColor}
           toneMapped={false}
@@ -88,9 +109,9 @@ export const Experience = () => {
           <RenderTexture attach={"map"}>
             <color attach="background" args={["#fff"]} />
             <Environment preset="sunset" />
-            <Float floatIntensity={4} rotationIntensity={5}>
-              <Camping
-                scale={1.6}
+            <Float floatIntensity={4} rotationIntensity={2}>
+              <Speaker
+                scale={0.8}
                 rotation-y={-degToRad(25)}
                 rotation-x={degToRad(40)}
                 position-y={-0.5}
@@ -99,8 +120,10 @@ export const Experience = () => {
           </RenderTexture>
         </meshBasicMaterial>
       </Text>
-      <group rotation-y={degToRad(-25)} position-x={3}>
-        <Camping scale={0.6} html />
+      <group rotation-y={degToRad(-25)} position-x={2} position-y={-0.5}>
+        <Speaker scale={0.4} html />
+        
+        {/* <Camping scale={0.6} html /> */}
         <mesh ref={meshFitCameraStore} visible={false}>
           <boxGeometry args={[2, 1, 2]} />
           <meshBasicMaterial color="red" transparent opacity={0.5} />
@@ -128,4 +151,4 @@ export const Experience = () => {
   );
 };
 
-useFont.preload("fonts/Poppins-Black.ttf");
+useFont.preload("fonts/DelaGothicOne-Regular.ttf");
